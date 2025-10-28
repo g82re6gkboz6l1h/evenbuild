@@ -1,33 +1,40 @@
-import Avatar from "./avatar";
-import CoverImage from "./cover-image";
 import DateFormatter from "./date-formatter";
 import { PostTitle } from "@/app/_components/post-title";
-import { type Author } from "@/interfaces/author";
 
 type Props = {
   title: string;
-  coverImage: string;
-  date: string;
-  author: Author;
+  date?: string;
+  meta?: string;
+  tags?: string[];
 };
 
-export function PostHeader({ title, coverImage, date, author }: Props) {
+export function PostHeader({ title, date, meta, tags }: Props) {
   return (
     <>
       <PostTitle>{title}</PostTitle>
-      <div className="hidden md:block md:mb-12">
-        <Avatar name={author.name} picture={author.picture} />
-      </div>
-      <div className="mb-8 md:mb-16 sm:mx-0">
-        <CoverImage title={title} src={coverImage} />
-      </div>
       <div className="max-w-2xl mx-auto">
-        <div className="block md:hidden mb-6">
-          <Avatar name={author.name} picture={author.picture} />
-        </div>
-        <div className="mb-6 text-lg">
-          <DateFormatter dateString={date} />
-        </div>
+        {meta && (
+          <div className="mb-4 text-lg text-gray-600 dark:text-gray-400">
+            {meta}
+          </div>
+        )}
+        {date && (
+          <div className="mb-4 text-lg">
+            <DateFormatter dateString={date} />
+          </div>
+        )}
+        {tags && tags.length > 0 && (
+          <div className="mb-6 flex flex-wrap gap-2">
+            {tags.map((tag) => (
+              <span
+                key={tag}
+                className="px-3 py-1 text-sm bg-gray-100 dark:bg-gray-800 rounded-full"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
       </div>
     </>
   );

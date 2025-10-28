@@ -17,11 +17,9 @@ export default function Index() {
         <Intro />
         <HeroPost
           title={heroPost.title}
-          coverImage={heroPost.coverImage}
-          date={heroPost.date}
-          author={heroPost.author}
+          image={heroPost.image}
           slug={heroPost.slug}
-          excerpt={heroPost.excerpt}
+          meta={heroPost.meta}
         />
         {morePosts.length > 0 && <MoreStories posts={morePosts} />}
       </Container>
