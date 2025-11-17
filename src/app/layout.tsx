@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import cn from "classnames";
 import { ThemeSwitcher } from "./_components/theme-switcher";
+import { Analytics } from "@vercel/analytics/next";
 
 import "./globals.css";
 
@@ -28,6 +29,7 @@ export default function RootLayout({
         className={cn(inter.className, "dark:bg-slate-900 dark:text-slate-400")}
       >
         <div className="min-h-screen">{children}</div>
+        <Analytics />
       </body>
     </html>
   );
